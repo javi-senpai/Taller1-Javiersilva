@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Name -->
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Nombre" />
+
+            <!-- Surname -->
+            <EditText
+                android:id="@+id/surname"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Apellido" />
+
+            <!-- Document -->
+            <EditText
+                android:id="@+id/document"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Documento"
+                android:inputType="number" />
+
+            <!-- Age -->
+            <EditText
+                android:id="@+id/age"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Edad"
+                android:inputType="number" />
+
+            <!-- Phone -->
+            <EditText
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Teléfono"
+                android:inputType="phone" />
+
+            <!-- Address -->
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Dirección" />
+
+            <!-- Birthdate -->
+            <EditText
+                android:id="@+id/birthdate"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Fecha de Nacimiento"
+                android:inputType="date" />
+
+            <!-- Email -->
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress" />
+
+            <!-- Marital Status -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Estado Civil" />
+
+            <RadioGroup
+                android:id="@+id/maritalStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/single"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Soltero" />
+
+                <RadioButton
+                    android:id="@+id/married"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Casado" />
+            </RadioGroup>
+
+            <!-- Gender -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Género" />
+
+            <RadioGroup
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Masculino" />
+
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Femenino" />
+            </RadioGroup>
+
+            <!-- Interests -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gustos" />
+
+            <CheckBox
+                android:id="@+id/music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Música" />
+
+            <CheckBox
+                android:id="@+id/sports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deporte" />
+
+            <CheckBox
+                android:id="@+id/movies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cine" />
+
+            <CheckBox
+                android:id="@+id/comedy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Comedia" />
+
+            <CheckBox
+                android:id="@+id/travel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Viajes" />
+
+            <CheckBox
+                android:id="@+id/books"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Libros" />
+
+            <!-- Favorite Football Team -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Equipo de Fútbol Favorito" />
+
+            <Spinner
+                android:id="@+id/footballTeam"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:entries="@array/football_teams" />
+
+            <!-- Favorite Movie -->
+            <EditText
+                android:id="@+id/favMovie"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Película Favorita" />
+
+            <!-- Favorite Color -->
+            <EditText
+                android:id="@+id/favColor"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Color Favorito" />
+
+            <!-- Favorite Comedy -->
+            <EditText
+                android:id="@+id/favComedy"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Comedia Favorita" />
+
+            <!-- Favorite Book -->
+            <EditText
+                android:id="@+id/favBook"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Libro Favorito" />
+
+            <!-- Favorite Song -->
+            <EditText
+                android:id="@+id/favSong"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Canción Favorita" />
+
+            <!-- Description -->
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descripción de la Persona"
+                android:inputType="textMultiLine"
+                android:minLines="4" />
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/black"
+                android:backgroundTint="@android:color/holo_blue_dark"
+                android:padding="12dp"
+                android:text="Guardar"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

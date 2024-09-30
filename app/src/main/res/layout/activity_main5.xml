@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Campo para el Nombre -->
+    <EditText
+        android:id="@+id/nameField"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:hint="Nombre"
+        android:inputType="textPersonName" />
+
+    <!-- Campo para el Apellido -->
+    <EditText
+        android:id="@+id/surnameField"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:hint="Apellido"
+        android:inputType="textPersonName" />
+
+    <!-- Campo para el Documento -->
+    <EditText
+        android:id="@+id/documentField"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:hint="Documento"
+        android:inputType="text" />
+
+    <!-- Campo para la Edad -->
+    <EditText
+        android:id="@+id/ageField"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:hint="Edad"
+        android:inputType="number" />
+
+    <!-- Campo para el Teléfono -->
+    <EditText
+        android:id="@+id/phoneField"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:hint="Teléfono"
+        android:inputType="phone" />
+
+    <!-- Campo para la Dirección -->
+    <EditText
+        android:id="@+id/addressField"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:hint="Dirección"
+        android:inputType="textPostalAddress" />
+
+    <!-- Campo para la Fecha de Nacimiento -->
+    <EditText
+        android:id="@+id/birthdateField"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:hint="Fecha de Nacimiento"
+        android:inputType="date" />
+
+    <!-- Campo para el Correo Electrónico -->
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:hint="Correo Electrónico"
+        android:inputType="textEmailAddress" />
+
+    <!-- Botón para Actualizar los Datos -->
+    <Button
+        android:id="@+id/updateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Actualizar"
+        android:layout_marginTop="16dp" />
+
+    <!-- Botón para Regresar sin hacer cambios -->
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Regresar"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

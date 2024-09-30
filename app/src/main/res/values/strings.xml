@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="football_teams">
+        <item>América</item>
+        <item>Deportivo Cali</item>
+        <item>Millonarios</item>
+        <item>Junior</item>
+    </string-array>
+</resources>
