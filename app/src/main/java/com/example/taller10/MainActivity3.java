@@ -25,7 +25,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         usersList = new ArrayList<>();
 
-        // Obtener la lista de usuarios desde la intención
+        // Obtener la lista
         ArrayList<User> newUsersList = getIntent().getParcelableArrayListExtra("usersList");
         if (newUsersList != null) {
             usersList.addAll(newUsersList); // Añadir los nuevos usuarios a la lista
@@ -35,7 +35,7 @@ public class MainActivity3 extends AppCompatActivity {
         loadUsersFromFiles();
 
         // Configurar RecyclerView
-        usersRecyclerView = findViewById(R.id.usersRecyclerView); // Asegúrate de que el ID coincide con tu layout
+        usersRecyclerView = findViewById(R.id.usersRecyclerView);
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         usersAdapter = new UsersAdapter(usersList);
         usersRecyclerView.setAdapter(usersAdapter);
@@ -95,9 +95,9 @@ public class MainActivity3 extends AppCompatActivity {
                         favComedy, favBook, favSong, description);
                 usersList.add(user);
 
-                bufferedReader.close(); // Cerrar el BufferedReader
+                bufferedReader.close();
             } catch (Exception e) {
-                break; // Salir del bucle si no se encuentra el archivo
+                break;
             }
         }
     }

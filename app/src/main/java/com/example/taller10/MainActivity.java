@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button buttonModificar = findViewById(R.id.modificar); // Asegúrate de que este ID exista en tu XML
+        Button buttonModificar = findViewById(R.id.modificar);
         buttonModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

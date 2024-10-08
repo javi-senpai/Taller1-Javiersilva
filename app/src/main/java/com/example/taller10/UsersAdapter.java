@@ -30,7 +30,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         holder.userName.setText(user.getName() + " " + user.getSurname());
         holder.userDocument.setText("Documento: " + user.getDocument());
 
-        // Mostrar más detalles en una sola línea o usa otro TextView si necesitas más espacio
+
         holder.userDetails.setText("Edad: " + user.getAge() + ", Teléfono: " + user.getPhone() + ", Direccion: " + user.getAddress() + ", Fecha de nacimiento "+ user.getBirthdate()+ ", correo: "+ user.getEmail() + ", Estado Civil: " + user.getMaritalStatus() + ", Genero:" + user.getGender() +",  Equipo Favorito:"+ user.getFootballTeam() +", Pelicula Favorita: " + user.getFavMovie() + ", Color Favorito:" + user.getFavColor() + ", Libro Favorita: " + user.getFavBook() + ", Cancion Favorita: " + user.getFavSong() + ", Descripción: " + user.getDescription());
     }
 
@@ -42,7 +42,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
     // Método para actualizar la lista de usuarios
     public void updateUsers(ArrayList<User> updatedUsersList) {
         this.usersList = updatedUsersList;
-        notifyDataSetChanged(); // Notificar que los datos han cambiado
+        notifyDataSetChanged();
     }
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {

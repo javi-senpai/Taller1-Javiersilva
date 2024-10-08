@@ -28,7 +28,7 @@ public class MainActivity2 extends AppCompatActivity {
     private static ArrayList<User> usersList = new ArrayList<>();
     private static int userIdCounter;
 
-    // Nombre del archivo para guardar el contador de ID
+
     private static final String PREFS_NAME = "UserPrefs";
     private static final String USER_ID_COUNTER_KEY = "UserIdCounter";
 
@@ -37,7 +37,7 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        // Obtener el contador de ID de SharedPreferences
+
         SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         userIdCounter = sharedPreferences.getInt(USER_ID_COUNTER_KEY, 1); // Por defecto inicia en 1
 
@@ -100,10 +100,10 @@ public class MainActivity2 extends AppCompatActivity {
                     birthdate, email, maritalStatus, gender, interests.toString(),
                     footballTeam, favMovie, favColor, favComedy, favBook, favSong, description);
 
-            // Añadir a ArrayList
+
             usersList.add(newUser);
 
-            // Guardar el nuevo ID en SharedPreferences
+            // Guardar el nuevo ID
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putInt(USER_ID_COUNTER_KEY, userIdCounter);
             editor.apply();

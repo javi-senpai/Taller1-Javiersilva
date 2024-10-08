@@ -22,7 +22,7 @@ public class MainActivity5 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main5);
 
-        // Inicializar los campos de la UI
+
         searchUserId = findViewById(R.id.searchUserId);
         nameField = findViewById(R.id.nameField);
         surnameField = findViewById(R.id.surnameField);
@@ -36,7 +36,7 @@ public class MainActivity5 extends AppCompatActivity {
         Button searchButton = findViewById(R.id.searchButton);
         Button backButton = findViewById(R.id.backButton);
 
-        // Deshabilitar los campos de edición y el botón de actualización al principio
+
         enableFields(false);
 
         // Obtener la lista de usuarios pasada desde la actividad anterior
@@ -45,21 +45,21 @@ public class MainActivity5 extends AppCompatActivity {
         // Cargar usuarios guardados desde el archivo
         loadUsersFromFile();
 
-        // Configurar el listener del botón buscar
+
         searchButton.setOnClickListener(v -> searchUserById());
 
-        // Configurar el listener del botón actualizar
+
         updateButton.setOnClickListener(v -> updateUserData());
 
-        // Configurar el listener del botón volver
+
         backButton.setOnClickListener(v -> finish());
     }
 
     private void loadUsersFromFile() {
         // Cargar usuarios desde el archivo de texto
-        ArrayList<User> savedUsers = FileManager.loadUsers(this); // Asumiendo que tienes un método para cargar usuarios desde el archivo
+        ArrayList<User> savedUsers = FileManager.loadUsers(this);
         if (savedUsers != null) {
-            usersList.addAll(savedUsers); // Agregar usuarios guardados a la lista
+            usersList.addAll(savedUsers);
         }
     }
 
@@ -67,16 +67,16 @@ public class MainActivity5 extends AppCompatActivity {
         String idString = searchUserId.getText().toString();
         if (!idString.isEmpty()) {
             try {
-                int userId = Integer.parseInt(idString); // Asegurarse de que se pueda convertir a entero
+                int userId = Integer.parseInt(idString);
                 boolean userFound = false;
 
                 for (User user : usersList) {
                     if (user.getId() == userId) {
                         selectedUser = user;
                         userFound = true;
-                        loadUserData(user);  // Cargar los datos del usuario
-                        enableFields(true);  // Habilitar los campos para la edición
-                        updateButton.setEnabled(true);  // Habilitar el botón de actualización
+                        loadUserData(user);
+                        enableFields(true);
+                        updateButton.setEnabled(true);
                         break;
                     }
                 }
@@ -120,7 +120,7 @@ public class MainActivity5 extends AppCompatActivity {
             // Reemplazar el usuario en la lista de usuarios
             for (int i = 0; i < usersList.size(); i++) {
                 if (usersList.get(i).getId() == selectedUser.getId()) {
-                    usersList.set(i, selectedUser); // Sobrescribir el objeto en la lista
+                    usersList.set(i, selectedUser);
                     break;
                 }
             }
@@ -136,7 +136,7 @@ public class MainActivity5 extends AppCompatActivity {
     }
 
     private void enableFields(boolean enable) {
-        // Habilitar o deshabilitar los campos de edición
+
         nameField.setEnabled(enable);
         surnameField.setEnabled(enable);
         documentField.setEnabled(enable);

@@ -56,7 +56,7 @@ public class MainActivity4 extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Obtener la lista actualizada de usuarios si se ha pasado desde otra actividad
+
         ArrayList<User> updatedUsersList = getIntent().getParcelableArrayListExtra("updatedUsersList");
         if (updatedUsersList != null) {
             usersList = updatedUsersList; // Actualizar la lista de usuarios
@@ -78,7 +78,7 @@ public class MainActivity4 extends AppCompatActivity {
                 }
             }
 
-            // Si no se encontró en la lista, buscar en el archivo
+
             if (!userFound) {
                 userFound = readUserFromFile(id);
             }
@@ -106,19 +106,19 @@ public class MainActivity4 extends AppCompatActivity {
 
             // Procesar y mostrar los datos
             String[] userData = content.toString().split("\n");
-            if (userData.length >= 15) { // Asegúrate de que hay suficientes líneas
+            if (userData.length >= 15) {
                 User user = new User(id, userData[0], userData[1], userData[2], userData[3],
                         userData[4], userData[5], userData[6], userData[7],
                         userData[8], userData[9], userData[10], userData[11],
                         userData[12], userData[13], userData[14], userData[15],
-                        userData[16], userData[17]); // Crear un nuevo objeto usuario
+                        userData[16], userData[17]);
                 displayUserDetails(user);
                 return true; // Usuario encontrado
             }
         } catch (Exception e) {
             Toast.makeText(this, "Error al leer el usuario desde el archivo: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
-        return false; // Usuario no encontrado
+        return false;
     }
 
     private void displayUserDetails(User user) {
