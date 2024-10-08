@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MainActivity4.class);
                 intent.putParcelableArrayListExtra("usersList", MainActivity2.getUsersList());  // Pasar la lista
+
                 startActivity(intent);
             }
         });

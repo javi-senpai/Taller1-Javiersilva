@@ -1,6 +1,8 @@
 package com.example.taller10;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -10,13 +12,12 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -24,16 +25,21 @@ public class MainActivity2 extends AppCompatActivity {
         return usersList;
     }
 
-
-
     private static ArrayList<User> usersList = new ArrayList<>();
-    private int userIdCounter = 1;
+    private static int userIdCounter;
+
+    // Nombre del archivo para guardar el contador de ID
+    private static final String PREFS_NAME = "UserPrefs";
+    private static final String USER_ID_COUNTER_KEY = "UserIdCounter";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        // Obtener el contador de ID de SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        userIdCounter = sharedPreferences.getInt(USER_ID_COUNTER_KEY, 1); // Por defecto inicia en 1
 
         EditText nameField = findViewById(R.id.name);
         EditText surnameField = findViewById(R.id.surname);
@@ -62,7 +68,6 @@ public class MainActivity2 extends AppCompatActivity {
         Button saveButton = findViewById(R.id.saveButton);
 
         saveButton.setOnClickListener(v -> {
-
             String name = nameField.getText().toString();
             String surname = surnameField.getText().toString();
             String document = documentField.getText().toString();
@@ -73,7 +78,6 @@ public class MainActivity2 extends AppCompatActivity {
             String email = emailField.getText().toString();
             String maritalStatus = ((RadioButton) findViewById(maritalStatusGroup.getCheckedRadioButtonId())).getText().toString();
             String gender = ((RadioButton) findViewById(genderGroup.getCheckedRadioButtonId())).getText().toString();
-
 
             StringBuilder interests = new StringBuilder();
             if (musicCheckbox.isChecked()) interests.append("Música, ");
@@ -99,11 +103,34 @@ public class MainActivity2 extends AppCompatActivity {
             // Añadir a ArrayList
             usersList.add(newUser);
 
+            // Guardar el nuevo ID en SharedPreferences
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putInt(USER_ID_COUNTER_KEY, userIdCounter);
+            editor.apply();
+
+            // Guardar datos del usuario en un archivo
+            saveUserToFile(newUser);
 
             Intent intent = new Intent(MainActivity2.this, MainActivity3.class);
             intent.putParcelableArrayListExtra("usersList", (ArrayList<? extends Parcelable>) usersList);
             startActivity(intent);
-
         });
+    }
+
+    private void saveUserToFile(User user) {
+        String fileName = "user_" + user.getId() + ".txt";
+        try {
+            FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            osw.write(user.getName() + "\n" + user.getSurname() + "\n" + user.getDocument() + "\n" +
+                    user.getAge() + "\n" + user.getPhone() + "\n" + user.getAddress() + "\n" +
+                    user.getBirthdate() + "\n" + user.getEmail() + "\n" + user.getMaritalStatus() + "\n" +
+                    user.getGender() + "\n" + user.getInterests() + "\n" + user.getFootballTeam() + "\n" +
+                    user.getFavMovie() + "\n" + user.getFavColor() + "\n" + user.getFavComedy() + "\n" +
+                    user.getFavBook() + "\n" + user.getFavSong() + "\n" + user.getDescription());
+            osw.close();
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al guardar usuario: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 }

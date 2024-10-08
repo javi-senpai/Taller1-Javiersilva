@@ -5,13 +5,30 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <!-- Campo para ingresar el ID del usuario a modificar -->
+    <EditText
+        android:id="@+id/searchUserId"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:hint="Ingrese el ID del usuario"
+        android:inputType="number" />
+
+    <!-- Botón para buscar el usuario -->
+    <Button
+        android:id="@+id/searchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buscar Usuario"
+        android:layout_marginTop="16dp" />
+
     <!-- Campo para el Nombre -->
     <EditText
         android:id="@+id/nameField"
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:hint="Nombre"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:enabled="false" />
 
     <!-- Campo para el Apellido -->
     <EditText
@@ -19,7 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:hint="Apellido"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:enabled="false" />
 
     <!-- Campo para el Documento -->
     <EditText
@@ -27,7 +45,8 @@
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:hint="Documento"
-        android:inputType="text" />
+        android:inputType="text"
+        android:enabled="false" />
 
     <!-- Campo para la Edad -->
     <EditText
@@ -35,7 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:hint="Edad"
-        android:inputType="number" />
+        android:inputType="number"
+        android:enabled="false" />
 
     <!-- Campo para el Teléfono -->
     <EditText
@@ -43,7 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:hint="Teléfono"
-        android:inputType="phone" />
+        android:inputType="phone"
+        android:enabled="false" />
 
     <!-- Campo para la Dirección -->
     <EditText
@@ -51,7 +72,8 @@
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:hint="Dirección"
-        android:inputType="textPostalAddress" />
+        android:inputType="textPostalAddress"
+        android:enabled="false" />
 
     <!-- Campo para la Fecha de Nacimiento -->
     <EditText
@@ -59,7 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:hint="Fecha de Nacimiento"
-        android:inputType="date" />
+        android:inputType="date"
+        android:enabled="false" />
 
     <!-- Campo para el Correo Electrónico -->
     <EditText
@@ -67,7 +90,8 @@
         android:layout_width="match_parent"
         android:layout_height="49dp"
         android:hint="Correo Electrónico"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"
+        android:enabled="false" />
 
     <!-- Botón para Actualizar los Datos -->
     <Button
@@ -75,7 +99,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Actualizar"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:enabled="false" />
 
     <!-- Botón para Regresar sin hacer cambios -->
     <Button

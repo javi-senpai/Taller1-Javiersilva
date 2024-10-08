@@ -1,6 +1,5 @@
 package com.example.taller10;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,16 +12,18 @@ import java.util.ArrayList;
 
 public class MainActivity5 extends AppCompatActivity {
 
-    private EditText nameField, surnameField, documentField, ageField, phoneField, addressField, birthdateField, emailField;
-    private int userId; // Para almacenar el ID del usuario a editar
-    private static ArrayList<User> usersList; // Para almacenar la lista de usuarios
+    private EditText searchUserId, nameField, surnameField, documentField, ageField, phoneField, addressField, birthdateField, emailField;
+    private User selectedUser;
+    private ArrayList<User> usersList;
+    private Button updateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main5);
 
-        // Inicializar las vistas
+        // Inicializar los campos de la UI
+        searchUserId = findViewById(R.id.searchUserId);
         nameField = findViewById(R.id.nameField);
         surnameField = findViewById(R.id.surnameField);
         documentField = findViewById(R.id.documentField);
@@ -31,67 +32,119 @@ public class MainActivity5 extends AppCompatActivity {
         addressField = findViewById(R.id.addressField);
         birthdateField = findViewById(R.id.birthdateField);
         emailField = findViewById(R.id.emailField);
-
-        Button updateButton = findViewById(R.id.updateButton);
+        updateButton = findViewById(R.id.updateButton);
+        Button searchButton = findViewById(R.id.searchButton);
         Button backButton = findViewById(R.id.backButton);
 
-        /*
-        // Obtener el ID del usuario y la lista desde el intent
-        userId = getIntent().getIntExtra("userId", -1);
+        // Deshabilitar los campos de edición y el botón de actualización al principio
+        enableFields(false);
+
+        // Obtener la lista de usuarios pasada desde la actividad anterior
         usersList = getIntent().getParcelableArrayListExtra("usersList");
 
-        // Cargar los datos del usuario en los campos
-        loadUserData();
+        // Cargar usuarios guardados desde el archivo
+        loadUsersFromFile();
 
-        // Configurar los listeners de los botones
+        // Configurar el listener del botón buscar
+        searchButton.setOnClickListener(v -> searchUserById());
+
+        // Configurar el listener del botón actualizar
         updateButton.setOnClickListener(v -> updateUserData());
-       */ backButton.setOnClickListener(v -> finish());/*
+
+        // Configurar el listener del botón volver
+        backButton.setOnClickListener(v -> finish());
     }
 
-    private void loadUserData() {
-        if (usersList != null) {
-            for (User user : usersList) {
-                if (user.getId() == userId) {
-                    nameField.setText(user.getName());
-                    surnameField.setText(user.getSurname());
-                    documentField.setText(user.getDocument());
-                    ageField.setText(user.getAge());
-                    phoneField.setText(user.getPhone());
-                    addressField.setText(user.getAddress());
-                    birthdateField.setText(user.getBirthdate());
-                    emailField.setText(user.getEmail());
-                    return; // Si se encuentra el usuario, salir del método
-                }
-            }
-            Toast.makeText(this, "Usuario no encontrado.", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "No se encontraron usuarios.", Toast.LENGTH_SHORT).show();
+    private void loadUsersFromFile() {
+        // Cargar usuarios desde el archivo de texto
+        ArrayList<User> savedUsers = FileManager.loadUsers(this); // Asumiendo que tienes un método para cargar usuarios desde el archivo
+        if (savedUsers != null) {
+            usersList.addAll(savedUsers); // Agregar usuarios guardados a la lista
         }
-    }*/
+    }
 
-   /* private void updateUserData() {
-        if (usersList != null) {
-            for (User user : usersList) {
-                if (user.getId() == userId) {
-                    // Actualizar los datos del usuario con los valores de entrada
-                    user.setName(nameField.getText().toString());
-                    user.setSurname(surnameField.getText().toString());
-                    user.setDocument(documentField.getText().toString());
-                    user.setAge(ageField.getText().toString());
-                    user.setPhone(phoneField.getText().toString());
-                    user.setAddress(addressField.getText().toString());
-                    user.setBirthdate(birthdateField.getText().toString());
-                    user.setEmail(emailField.getText().toString());
+    private void searchUserById() {
+        String idString = searchUserId.getText().toString();
+        if (!idString.isEmpty()) {
+            try {
+                int userId = Integer.parseInt(idString); // Asegurarse de que se pueda convertir a entero
+                boolean userFound = false;
 
-                    Toast.makeText(this, "Datos actualizados exitosamente.", Toast.LENGTH_SHORT).show();
-                    finish(); // Cerrar esta actividad y regresar a la anterior
-                    return;
+                for (User user : usersList) {
+                    if (user.getId() == userId) {
+                        selectedUser = user;
+                        userFound = true;
+                        loadUserData(user);  // Cargar los datos del usuario
+                        enableFields(true);  // Habilitar los campos para la edición
+                        updateButton.setEnabled(true);  // Habilitar el botón de actualización
+                        break;
+                    }
+                }
+
+                if (!userFound) {
+                    Toast.makeText(this, "Usuario no encontrado con el ID: " + userId, Toast.LENGTH_SHORT).show();
+                    enableFields(false);
+                }
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "Por favor ingrese un ID válido.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Por favor ingrese un ID válido.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void loadUserData(User user) {
+        // Cargar los datos del usuario en los campos de texto
+        nameField.setText(user.getName());
+        surnameField.setText(user.getSurname());
+        documentField.setText(user.getDocument());
+        ageField.setText(String.valueOf(user.getAge())); // Asegúrate de convertir a String
+        phoneField.setText(user.getPhone());
+        addressField.setText(user.getAddress());
+        birthdateField.setText(user.getBirthdate());
+        emailField.setText(user.getEmail());
+    }
+
+    private void updateUserData() {
+        if (selectedUser != null) {
+            // Actualizar los datos del usuario seleccionado
+            selectedUser.setName(nameField.getText().toString());
+            selectedUser.setSurname(surnameField.getText().toString());
+            selectedUser.setDocument(documentField.getText().toString());
+            selectedUser.setAge(ageField.getText().toString());
+            selectedUser.setPhone(phoneField.getText().toString());
+            selectedUser.setAddress(addressField.getText().toString());
+            selectedUser.setBirthdate(birthdateField.getText().toString());
+            selectedUser.setEmail(emailField.getText().toString());
+
+            // Reemplazar el usuario en la lista de usuarios
+            for (int i = 0; i < usersList.size(); i++) {
+                if (usersList.get(i).getId() == selectedUser.getId()) {
+                    usersList.set(i, selectedUser); // Sobrescribir el objeto en la lista
+                    break;
                 }
             }
-            Toast.makeText(this, "Usuario no encontrado.", Toast.LENGTH_SHORT).show();
+
+            // Guardar la lista actualizada en el archivo
+            FileManager.saveUsers(usersList, this);
+
+            Toast.makeText(this, "Datos actualizados exitosamente.", Toast.LENGTH_SHORT).show();
+            finish();
         } else {
-            Toast.makeText(this, "No se encontraron usuarios.", Toast.LENGTH_SHORT).show();
-        }*/
+            Toast.makeText(this, "No se ha seleccionado ningún usuario.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void enableFields(boolean enable) {
+        // Habilitar o deshabilitar los campos de edición
+        nameField.setEnabled(enable);
+        surnameField.setEnabled(enable);
+        documentField.setEnabled(enable);
+        ageField.setEnabled(enable);
+        phoneField.setEnabled(enable);
+        addressField.setEnabled(enable);
+        birthdateField.setEnabled(enable);
+        emailField.setEnabled(enable);
+        updateButton.setEnabled(enable);
     }
 }
-

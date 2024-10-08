@@ -4,7 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
-    private static int idCounter = 0;
+
     private int id;
     private String name;
     private String surname;
@@ -25,12 +25,15 @@ public class User implements Parcelable {
     private String favSong;
     private String description;
 
+
+
     // Constructor
     public User(int id, String name, String surname, String document, String age, String phone, String address,
                 String birthdate, String email, String maritalStatus, String gender, String interests,
                 String footballTeam, String favMovie, String favColor, String favComedy,
                 String favBook, String favSong, String description) {
-        this.id = ++idCounter; // Asignar el ID actual y luego incrementar
+        //this.id = ++idCounter; // Asignar el ID actual y luego incrementar
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.document = document;
@@ -50,6 +53,10 @@ public class User implements Parcelable {
         this.favSong = favSong;
         this.description = description;
     }
+
+
+
+
 
     // Parcelable implementation
     protected User(Parcel in) {
@@ -72,6 +79,39 @@ public class User implements Parcelable {
         favBook = in.readString();
         favSong = in.readString();
         description = in.readString();
+    }
+
+    // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setDocument(String document) {
+        this.document = document;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setBirthdate(String birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -190,4 +230,6 @@ public class User implements Parcelable {
     public String getDescription() {
         return description;
     }
+
+
 }
